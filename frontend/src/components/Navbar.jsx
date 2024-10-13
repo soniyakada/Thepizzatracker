@@ -8,7 +8,7 @@ function Navbar() {
   return (
     <div className="flex justify-between items-center px-8 py-4 shadow-md">
    
-      <div className=""><img src={pizzalogo} className='h-10'/></div>
+     <Link to="/"> <div className=""><img src={pizzalogo} className='h-10'/></div></Link>
 
       
       <div className="flex gap-8 text-xl">
