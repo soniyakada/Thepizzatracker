@@ -1,6 +1,6 @@
-import React from 'react'
+import React,{useContext}from 'react'
 import Navbar from '../components/Navbar'
-import pizza from '../assets/pizza.jpeg'
+import { CartContext } from '../context/CartContext.jsx';
 import PizzaCard from '../components/Pizzacard';
 import pizza1 from '../assets/pizza1.webp'
 import pizza2 from '../assets/pizza2.webp'
@@ -16,6 +16,8 @@ import pizza10 from '../assets/img1.webp'
 
 function Home() {
 
+  const { addToCart } = useContext(CartContext);
+
  const pizzaData = [
     { name: 'Margherita', size: 'Medium', price: 200, image: pizza1 },
     { name: 'Pepperoni', size: 'Large', price: 150, image: pizza2 },
@@ -29,11 +31,13 @@ function Home() {
     { name: 'Spinach & Feta', size: 'Medium', price: 250, image: pizza2 }
   ];
   
+  
+
   return (
     <>
     <div className='h-screen w-full'>
     <Navbar/>
-    <div className='flex justify-around'>
+   <div className='flex justify-around'>
         <div className='flex flex-col mt-36 gap-6'>
             
             <h3 className='italic text-2xl'>Are you hungry ?</h3>
@@ -49,17 +53,19 @@ function Home() {
     <h1 className="text-3xl font-bold">All Pizzas</h1>
   </div>
       
-      <div className="flex flex-wrap justify-center gap-3">
-        {pizzaData.map((pizza,index)=>(
-          <PizzaCard
-          key={index}
-          image={pizza.image}
-          name={pizza.name}
-          size={pizza.size}
-          price = {pizza.price} 
-          />
-        ))}
-        </div>
+  <div className="grid grid-cols-4 gap-x-12 gap-y-16">
+  {pizzaData.map((pizza, index) => (
+    <PizzaCard
+      key={index}
+      image={pizza.image}
+      name={pizza.name}
+      size={pizza.size}
+      price={pizza.price}
+      addToCart={addToCart}
+    />
+  ))}
+</div>
+
     </div>
     </>
   )
